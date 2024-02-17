@@ -4,11 +4,12 @@ import { extend } from '@syncfusion/ej2-base';
 import { ChangeEventArgs } from '@syncfusion/ej2-buttons';
 import { CommonModule } from '@angular/common';
 
-import * as moment from 'moment-timezone';
+
 
 import { MainserviceService } from '../../mainservice.service';
 import { Subscription } from 'rxjs';
 import { EventSettingsModel, GroupModel, Schedule, View } from '@syncfusion/ej2-angular-schedule';
+import moment from 'moment';
 
 
 @Component({
@@ -112,25 +113,7 @@ console.log(this.scheduleData2);
     };
 
 
-const updatedRecords = this.scheduleData.map(record => {
-const id = parseInt(record.Task.match(/\d+/)[0]); // Extracts the first number from the Task string.
-const start = moment(record.Start).tz('UTC').format(); // Convert to UTC and format as string
-const finish = moment(record.Finish).tz('UTC').format(); // Convert to UTC and format as string
 
-return {
-  ...record, // Spread operator to include all existing fields.
-  id, // Add the new id field.
-  StartTime: start,
-  EndTime: finish
-};
-});
-
-  
-    
-    this.scheduleData = updatedRecords;
-    this.scheduleData2 = updatedRecords;
-   
-    console.log(updatedRecords);
     this.cdr.detectChanges();
     
 }
