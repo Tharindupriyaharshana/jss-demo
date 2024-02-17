@@ -24,6 +24,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
   },
   {
+    path: 'schedule',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/scheduler-plan/scheduler-routing.module').then(m => m.SchedulerPlanRoutingModule)
+  },
+  {
     path: 'notification',
     pathMatch: 'full',
     canActivate: [AuthGuard],
