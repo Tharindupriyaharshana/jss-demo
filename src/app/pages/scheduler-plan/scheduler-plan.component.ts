@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 
 import { MainserviceService } from '../../mainservice.service';
 import { Subscription } from 'rxjs';
-import { EventSettingsModel, GroupModel, Schedule, View } from '@syncfusion/ej2-angular-schedule';
+import { EventRenderedArgs, EventSettingsModel, GroupModel, Schedule, View } from '@syncfusion/ej2-angular-schedule';
 import moment from 'moment';
 
 
@@ -41,25 +41,34 @@ public group: GroupModel = {
   enableCompactView: false,
   resources: ['MeetingRoom']
 };
+
+public temp: string = '<div class="tooltip-wrap">' +
+'<div class="image ${EventType}"></div>' +
+'<div class="content-area"><div class="name">${Subject}</></div>' +
+'${if(City !== null && City !== undefined)}<div class="city">${City}</div>${/if}' +
+'<div class="time">From&nbsp;:&nbsp;${StartTime.toLocaleString()} </div>' +
+'<div class="time">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;${EndTime.toLocaleString()} </div></div></div>';
+
+
 public allowMultiple = true;
 public resourceDataSource: Record<string, any>[] = [
-  { text: 'MACHINE 01', id: 1, color: '#98AFC7' },
-  { text: 'MACHINE 02', id: 2, color: '#99c68e' },
-  { text: 'MACHINE 03', id: 3, color: '#C2B280' },
-  { text: 'MACHINE 04', id: 4, color: '#3090C7' },
-  { text: 'MACHINE 05', id: 5, color: '#95b9' },
-  { text: 'MACHINE 06', id: 6, color: '#95b9c7' },
-  { text: 'MACHINE 07', id: 7, color: '#deb887' },
-  { text: 'MACHINE 08', id: 8, color: '#3090C7' },
-  { text: 'MACHINE 09', id: 9, color: '#98AFC7' },
-  { text: 'MACHINE 10', id: 10, color: '#778899' }
+  { text: 'ROBOTIC CELL 1', id: 1, color: '#98AFC7' },
+  { text: 'ROBOTIC CELL 02', id: 2, color: '#99c68e' },
+  { text: 'ROBOTIC CELL 03', id: 3, color: '#C2B280' },
+  { text: 'ROBOTIC CELL 04', id: 4, color: '#3090C7' },
+  { text: 'ROBOTIC CELL 05', id: 5, color: '#95b9' },
+  { text: 'ROBOTIC CELL 06', id: 6, color: '#95b9c7' },
+  { text: 'ROBOTIC CELL 07', id: 7, color: '#deb887' },
+  { text: 'ROBOTIC CELL 08', id: 8, color: '#3090C7' },
+  { text: 'ROBOTIC CELL 09', id: 9, color: '#98AFC7' },
+  { text: 'ROBOTIC CELL 10', id: 10, color: '#778899' }
 ];
 
 public eventSettings: EventSettingsModel | undefined ;
 
 
 
-constructor(private uploadService: MainserviceService,private cdr: ChangeDetectorRef) { }
+constructor(private uploadService: MainserviceService) { }
 
 
 // Helper function to convert date objects to the desired string format
@@ -109,12 +118,10 @@ console.log(this.scheduleData2);
         description: { name: 'Description', title: 'Comments' },
         startTime: { name: 'StartTime', title: 'From' },
         endTime: { name: 'EndTime', title: 'To' }
-      }
+      },enableTooltip: true, tooltipTemplate: this.temp 
     };
 
 
-
-    this.cdr.detectChanges();
     
 }
 
@@ -145,6 +152,32 @@ onFileChanged(event: Event) {
     this.selectedFile = null;  // Explicitly set to null when no files are selected
   }
 }
+
+public onEventRendered(args: EventRenderedArgs): void {
+  // Define an array of colors
+  const colors = [
+      '#98AFC7', // Color for job 1
+      '#99c68e', // Color for job 2
+      '#C2B280', // Color for job 3
+      '#3090C7', // Color for job 4
+      '#92b92b', // Color for job 5
+      '#95b9c7', // Color for job 6
+      '#deb887', // Color for job 7
+      '#5D8AA8', // Alternative color for job 8, as #3090C7 is already used for job 4
+      '#8A2BE2', // Alternative color for job 9, as #98AFC7 is already used for job 1
+      '#778899'  // Color for job 10
+    ];
+
+  const categoryColor: any = args;
+
+  // Check if the job is between 1 and 10
+  if (categoryColor.data.Job >= 1 && categoryColor.data.Job <= 10) {
+    // Use the job number as an index to select the color from the array
+    // Note: Subtract 1 to align with array indexing (0-9 for jobs 1-10)
+    categoryColor.element.style.backgroundColor = colors[categoryColor.data.Job - 1];
+  }
+}
+
 
 onUpload() {
   if (this.selectedFile) {

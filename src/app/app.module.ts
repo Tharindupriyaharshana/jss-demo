@@ -14,7 +14,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AuthModule } from './pages/auth/auth.module';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { SchedulerPlanModule } from './pages/scheduler-plan/scheduler-plan.module';
-
+import { HttpClientModule } from '@angular/common/http';
+import { UploadfileModule } from './pages/uploadfile/uploadfile.module';
+import { RoboticcellModule } from './pages/roboticcell/roboticcell.module';
+import { PreprocessModule } from './pages/preprocess/preprocess.module';
+import { BreakdownModule } from './pages/breakdown/breakdown.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +35,12 @@ import { SchedulerPlanModule } from './pages/scheduler-plan/scheduler-plan.modul
     ToastrModule.forRoot(),
     MatCardModule,
     MatButtonModule,
+    UploadfileModule,
     SchedulerPlanModule,
+    HttpClientModule,
+    RoboticcellModule,
+    PreprocessModule,
+    BreakdownModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts')
     })

@@ -1,0 +1,87 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+      <h1>Dashboard</h1>
+    
+    </mat-toolbar>
+
+    <mat-card class="material-table">
+      <mat-card-title class="material-table__header">
+        <h5 class="material-table__title">Please Upload Excel File</h5>
+       
+      </mat-card-title>
+    
+      <mat-card-content class="material-table__content">
+
+        <div class="instruction-container" >
+          <h3> Please keep the relevent upload format </h3>
+          <ul>
+            <li>
+              <a href="../../../../assets/download/JSP_dataset .xlsx" download="SampleExcelFile.xlsx">Download Sample Excel File</a>
+            </li>
+           <li> You can process with the Preprocess</li>
+           <li> Make sure all the values in text type</li>
+           <li> Understand the data : Job 1 's Operation 1 in machine 2 , and the Relevent processing time for the operation in next sheet</li>
+          </ul>
+         </div>
+
+
+
+        <div class="file-upload-wrapper">
+          <input type="file" id="fileInput" (change)="onFileChanged($event)">
+          <label for="fileInput" class="file-input-label">Choose a file</label>
+          <span *ngIf="fileName">{{ fileName }}</span> 
+          <button mat-raised-button color="primary" (click)="onUpload()">
+            <mat-icon>file_upload</mat-icon> Upload
+          </button>
+        </div>
+
+   
+
+
+        <div class="result-message" *ngIf="!isLoading && !!showResult">
+          <mat-icon class="circle">check_circle</mat-icon>
+          <h2>Congratulations!!</h2>
+          <p>Schedule generation completed.</p>
+
+          <button mat-raised-button color="primary" (click)="showSchedule()">Show Schedule</button>
+        </div>
+
+        <div class="result-message" *ngIf="!!timeout">
+          <mat-icon class="circle-orange">warning</mat-icon> <!-- Changed icon to 'warning' and class to 'circle-orange' -->
+          <h2>Attention Needed!</h2> <!-- Changed to a less severe heading -->
+          <p>There seems to be a temporary issue. This could be due to our backend services being temporarily unavailable or an issue with the file you uploaded. Please try again.</p>
+          <p>If you need assistance, feel free to reach out to us at <a href="mailto:request@plusplan.info">request@plusplan.info</a>. We're here to help.</p>
+          <p>In the meantime, we've loaded our demo schedule for you. Feel free to explore other functionalities.</p>
+      </div>
+      
+      
+
+        
+
+        <div class="result-container" *ngIf="!isLoading && !!showResult">
+          <h3> Generated</h3>
+          <ul>
+           <li> Schedule for All Robotic Cells</li>
+           <li> Schedule for each Robotic Cells</li>
+           <li> Tool life time finishing schedule</li>
+          </ul>
+         </div>
+        
+        
+        <div class="loading-container"  *ngIf="isLoading">
+          <div class="centered-content">
+            <h2>Generating!! Wait a moment.</h2>
+            <h4 *ngIf="!responseReceived">Time left: {{ timeLeft }} seconds</h4>
+            <h4 *ngIf="responseReceived">Please try again, something happened.</h4>
+          </div>
+          <img src="../../../../assets/loading.gif" class="loading-gif"/>
+        </div>
+
+      
+
+      </mat-card-content>
+    </mat-card>
+   
+
+
+</app-layout>  

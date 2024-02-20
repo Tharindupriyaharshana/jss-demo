@@ -27,6 +27,8 @@ import {
 } from './components';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardService } from './services';
+import { CircularGaugeModule } from '@syncfusion/ej2-angular-circulargauge';
+import { ChartModule } from '@syncfusion/ej2-angular-charts';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { DashboardService } from './services';
     MatInputModule,
     NgApexchartsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    CircularGaugeModule,
+    ChartModule
   ],
   exports: [
     DailyLineChartComponent

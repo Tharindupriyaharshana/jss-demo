@@ -1,0 +1,81 @@
+<app-layout>
+    <mat-toolbar class="page-header" role="heading">
+      <h1>Dashboard</h1>
+     
+    </mat-toolbar>
+
+    <mat-card class="material-table">
+      <mat-card-title class="material-table__header">
+        <h5 class="material-table__title">ROBOT OPTIMIZATION PLAN</h5>
+       
+      </mat-card-title>
+    
+      <mat-card-content class="material-table__content">
+<!-- upload.component.html -->
+
+<!-- Dropdown for selecting RoomId -->
+<!-- HTML -->
+<div style="padding-bottom: 10px;">
+
+    <select class="custom-select" (change)="onRoomChange($event.target.value)">
+        <option value="">Select Robotic cell</option>
+        <option *ngFor="let id of roomIds" [value]="id">Robotic cell {{ id }}</option>
+      </select>
+
+      <input type="checkbox" [(ngModel)]="isOptimizationEnabled" (change)="onCheckboxChange()">
+<label for="optimizationCheckbox">Enable Optimization</label>
+
+</div>
+
+
+  
+  
+
+  <div *ngIf="scheduleData.length">
+
+
+    <div class="control-section">
+        <div class="col-lg-9 content-wrapper">
+          <ejs-schedule #scheduleObj width='100%' cssClass='adaptive-rows' height='650px' [rowAutoHeight]='rowAutoHeight'
+            [currentView]="currentView" [selectedDate]="selectedDate" [group]="group" [eventSettings]="eventSettings">
+            <e-resources>
+              <e-resource field='RoomId' title='Room Type' [dataSource]='resourceDataSource' [allowMultiple]='allowMultiple'
+                name='MeetingRoom' textField='text' idField='id' colorField='color'>
+              </e-resource>
+            </e-resources>
+            <e-views>
+              <e-view option="TimelineDay"></e-view>
+              <e-view option="TimelineWeek"></e-view>
+            </e-views>
+          </ejs-schedule>
+        </div>
+        <div class="col-lg-3 property-section">
+          <div class="property-panel-section">
+            <div class="property-panel-header">Properties</div>
+            <div class="property-panel-content">
+              <div id="property" class="property-panel-table" title="Properties">
+                <table id="property" title="Properties" style="width: 100%">
+                  <tbody>
+                    <tr style="height: 50px">
+                      <td style="width: 100%">
+                        <button ejs-button iconCss="e-icons e-print" cssClass="e-print-btn" content="Print"
+                        type="button" (click)='onPrintClick()'></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+
+
+      </mat-card-content>
+    </mat-card>
+   
+  
+
+</app-layout>  

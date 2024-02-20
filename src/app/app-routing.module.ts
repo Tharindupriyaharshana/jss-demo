@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/typography/typography.module').then(m => m.TypographyModule)
   },
   {
-    path: 'tables',
+    path: 'breakdown',
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/tables/tables.module').then(m => m.TablesModule)
@@ -28,6 +28,30 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/scheduler-plan/scheduler-routing.module').then(m => m.SchedulerPlanRoutingModule)
+  },
+  {
+    path: 'upload',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/uploadfile/upload/upload-routing.module').then(m => m.UploadRoutingModule)
+  },
+  {
+    path: 'roboticcell',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/roboticcell/roboticcell-routing.module').then(m => m.RoboticCellRoutingModule)
+  },
+  {
+    path: 'preprocess',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/preprocess/preprocess-routing.module').then(m => m.PreprocessModuleRoutingModule)
+  },
+  {
+    path: 'breakdown2',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/breakdown/breakdown-routing.module').then(m => m.BreakdownRoutingModule)
   },
   {
     path: 'notification',

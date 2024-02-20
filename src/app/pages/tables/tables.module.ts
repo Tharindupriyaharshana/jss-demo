@@ -15,6 +15,7 @@ import { TablesRoutingModule } from './tables-routing.module';
 import { SharedModule } from '../../shared/shared.module';
 import { EmployeeTableComponent, MaterialTableComponent } from './components';
 import { TablesService } from './services';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TablesService } from './services';
     MatToolbarModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    SharedModule
+    SharedModule,
+    ScheduleModule
   ],
   providers: [
     TablesService

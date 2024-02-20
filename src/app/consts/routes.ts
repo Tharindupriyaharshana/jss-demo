@@ -1,7 +1,12 @@
 export enum routes {
   DASHBOARD = '/dashboard',
   TYPOGRAPHY = '/typography',
-  TABLES = '/tables',
+  SCHEDULE = '/schedule',
+  UPLOAD = '/upload',
+  ROBOT = '/roboticcell',
+  BREAKDOWN = '/breakdown2',
+  PREPROCESS = '/preprocess',
+  TABLES = '/breakdown',
   NOTIFICATION = '/notification',
   UI_ELEMENTS_ICONS = '/ui/icons',
   UI_ELEMENTS_CHARTS = '/ui/charts',

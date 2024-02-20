@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Angular Material Admin - Free Angular Material Template with tens of components.</title>
+  <title>Plus Plan - AI Based Job Shop scheduler</title>
   <base href="./">
   <meta name="description" content="Free and Open-Source admin template built with Angular based on Material Design.">
   <meta name="keywords" content="angular material admin, angular material dashboard, angular material, material template, angular template.">
@@ -14,5 +14,25 @@
 </head>
 <body class="mat-typography">
   <app-root></app-root>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCHZadUUt0rDUaU_ryfwSq7xkUvhw5kUzk",
+      authDomain: "jobshopai-8a219.firebaseapp.com",
+      projectId: "jobshopai-8a219",
+      storageBucket: "jobshopai-8a219.appspot.com",
+      messagingSenderId: "961723537565",
+      appId: "1:961723537565:web:d56c2ef87bcf40f4bddc74"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+  </script>
 </body>
 </html>
